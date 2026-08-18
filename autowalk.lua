@@ -5,11 +5,13 @@
 -- ============================================================
 
 script_name("autowalk.lua")
+script_author("Yohanez")
 
 require "lib.moonloader"
 local json    = require "dkjson"
 local sampev  = require "lib.samp.events"
 local mimgui  = require "mimgui"
+local theme   = require "lib.mimgui_theme"
 local ffi     = require "ffi"
 
 -- ============================================================
@@ -172,18 +174,22 @@ local function applyStyle()
     col[mimgui.Col.Text]            = mimgui.ImVec4(0.92, 0.95, 0.92, 1.0)
 end
 
-mimgui.OnInitialize(applyStyle)
+mimgui.OnInitialize(function()
+    theme.applyDarkModern()
+end)
 
 -- ============================================================
 -- GUI FRAME
 -- ============================================================
 mimgui.OnFrame(function() return showMenu[0] end, function()
+    theme.applyDarkModern()
     local screenW, screenH = getScreenResolution()
     mimgui.SetNextWindowPos(mimgui.ImVec2(screenW / 2, screenH / 2),
         mimgui.Cond.FirstUseEver, mimgui.ImVec2(0.5, 0.5))
     mimgui.SetNextWindowSize(mimgui.ImVec2(520, 500), mimgui.Cond.FirstUseEver)
 
     mimgui.Begin("AutoWalk Manager", showMenu, mimgui.WindowFlags.NoCollapse)
+    mimgui.TextDisabled("Author: Yohanez")
 
     -- ── Header Status ──────────────────────────────────────
     local statusColor = enabled

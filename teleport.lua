@@ -1,32 +1,43 @@
 -- teleport.lua
--- Enhanced script: CRUD for teleport checkpoints with custom names
+-- Enhanced script: CRUD for teleport checkpoints with custom names and Dark Modern mimgui UI
 -- Created for GTA SA-MP with MoonLoader
 
 script_name("AutoTeleport")
-script_author("Custom")
-script_description("Teleport ke checkpoint dengan CRUD dan nama kustom")
+script_author("Yohanez")
+script_description("Teleport ke checkpoint dengan CRUD, Search Bar, dan Dark Modern UI")
 
 require "lib.moonloader"
-local json = require "dkjson"
+local json   = require "dkjson"
 local mimgui = require "lib.mimgui"
-local ffi = require "ffi"
+local ffi    = require "ffi"
 
 -- ============================================================
--- CONFIG
+-- CONFIG & PATHS
 -- ============================================================
-local routeFile = getWorkingDirectory() .. "\\config\\route.json"
+local configDir       = getWorkingDirectory() .. "\\config\\teleport"
+local routeFile       = configDir .. "\\route.json"
+local legacyRouteFile = getWorkingDirectory() .. "\\config\\route.json"
+
 local checkpoints = {}
-local showMenu = mimgui.new.bool(false)
+local showMenu    = mimgui.new.bool(false)
 
--- Colors
-local colorTitle  = mimgui.ImVec4(1.0, 0.8, 0.2, 1.0)  -- Gold
-local colorGreen  = mimgui.ImVec4(0.3, 1.0, 0.5, 1.0)  -- Green
-local colorWhite  = mimgui.ImVec4(1.0, 1.0, 1.0, 1.0)  -- White
+-- Buffers UI
+local searchBuf  = mimgui.new.char[128]()
+local newNameBuf = mimgui.new.char[128]()
+local newLocBuf  = mimgui.new.char[128]()
+local editingIdx = -1
 
 -- ============================================================
 -- HELPERS
 -- ============================================================
+local function ensureConfigDir()
+    if not doesDirectoryExist(configDir) then
+        createDirectory(configDir)
+    end
+end
+
 local function saveRoute()
+    ensureConfigDir()
     local file, err = io.open(routeFile, "w")
     if not file then
         sampAddChatMessage("{FF0000}[Teleport] Gagal menulis route.json: " .. tostring(err), -1)
@@ -40,10 +51,17 @@ local function saveRoute()
 end
 
 local function loadRoute()
-    local file = io.open(routeFile, "r")
+    ensureConfigDir()
+    local targetFile = routeFile
+    local file = io.open(targetFile, "r")
     if not file then
-        sampAddChatMessage("{FF0000}[Teleport] Gagal membuka file route.json: " .. routeFile, -1)
-        return false
+        file = io.open(legacyRouteFile, "r")
+        if file then
+            targetFile = legacyRouteFile
+        else
+            sampAddChatMessage("{FF0000}[Teleport] Gagal membuka file route.json", -1)
+            return false
+        end
     end
     local content = file:read("*a")
     file:close()
@@ -52,7 +70,7 @@ local function loadRoute()
         sampAddChatMessage("{FF0000}[Teleport] Error parsing route.json: " .. tostring(err), -1)
         return false
     end
-    -- Migrate legacy format (array of {x,y,z}) to include name
+
     checkpoints = {}
     for i, cp in ipairs(data) do
         if cp.name == nil then
@@ -60,13 +78,19 @@ local function loadRoute()
         end
         checkpoints[i] = { name = cp.name, x = cp.x, y = cp.y, z = cp.z }
     end
-    sampAddChatMessage("{00FF00}[Teleport] Berhasil memuat " .. #checkpoints .. " checkpoint dari route.json", -1)
+    sampAddChatMessage("{00FF00}[Teleport] Berhasil memuat " .. #checkpoints .. " checkpoint", -1)
+
+    if targetFile == legacyRouteFile then
+        saveRoute()
+    end
     return true
 end
 
-local function findIndexByName(name)
-    for i, cp in ipairs(checkpoints) do
-        if cp.name == name then return i end
+local function parseLocation(str)
+    if not str or str == "" then return nil end
+    local x, y, z = str:match("([%d%.%-]+)%s*[,%s]%s*([%d%.%-]+)%s*[,%s]%s*([%d%.%-]+)")
+    if x and y and z then
+        return tonumber(x), tonumber(y), tonumber(z)
     end
     return nil
 end
@@ -105,9 +129,6 @@ local function deleteCheckpoint(index)
     sampAddChatMessage(string.format("{00FF00}[Teleport] Hapus checkpoint #%d ('%s')", index, name), -1)
 end
 
--- ============================================================
--- TELEPORT FUNCTION
--- ============================================================
 local function teleportTo(index)
     local cp = checkpoints[index]
     if not cp then
@@ -120,81 +141,230 @@ local function teleportTo(index)
 end
 
 -- ============================================================
--- UI (ImGui)
+-- DARK MODERN STYLING
+-- ============================================================
+local darkThemeInitialized = false
+local function applyDarkTheme()
+    if darkThemeInitialized then return end
+    darkThemeInitialized = true
+
+    local style = mimgui.GetStyle()
+    local colors = style.Colors
+
+    style.WindowRounding    = 8.0
+    style.ChildRounding     = 6.0
+    style.FrameRounding     = 5.0
+    style.PopupRounding     = 6.0
+    style.ScrollbarRounding = 6.0
+    style.GrabRounding      = 4.0
+    style.TabRounding       = 5.0
+    style.WindowBorderSize  = 1.0
+    style.FrameBorderSize   = 0.0
+    style.ItemSpacing       = mimgui.ImVec2(8, 6)
+    style.ItemInnerSpacing  = mimgui.ImVec2(6, 4)
+
+    colors[mimgui.Col.WindowBg]           = mimgui.ImVec4(0.11, 0.11, 0.13, 0.98)
+    colors[mimgui.Col.ChildBg]            = mimgui.ImVec4(0.08, 0.08, 0.10, 0.95)
+    colors[mimgui.Col.PopupBg]            = mimgui.ImVec4(0.13, 0.13, 0.16, 0.98)
+    colors[mimgui.Col.Border]             = mimgui.ImVec4(0.22, 0.22, 0.25, 0.60)
+    colors[mimgui.Col.FrameBg]            = mimgui.ImVec4(0.16, 0.16, 0.19, 1.00)
+    colors[mimgui.Col.FrameBgHovered]     = mimgui.ImVec4(0.22, 0.22, 0.26, 1.00)
+    colors[mimgui.Col.FrameBgActive]      = mimgui.ImVec4(0.28, 0.28, 0.34, 1.00)
+    colors[mimgui.Col.TitleBg]            = mimgui.ImVec4(0.09, 0.09, 0.11, 1.00)
+    colors[mimgui.Col.TitleBgActive]      = mimgui.ImVec4(0.12, 0.12, 0.15, 1.00)
+    colors[mimgui.Col.Button]             = mimgui.ImVec4(0.20, 0.22, 0.26, 1.00)
+    colors[mimgui.Col.ButtonHovered]      = mimgui.ImVec4(0.28, 0.32, 0.40, 1.00)
+    colors[mimgui.Col.ButtonActive]       = mimgui.ImVec4(0.35, 0.40, 0.50, 1.00)
+    colors[mimgui.Col.Header]             = mimgui.ImVec4(0.16, 0.18, 0.22, 1.00)
+    colors[mimgui.Col.HeaderHovered]      = mimgui.ImVec4(0.24, 0.28, 0.35, 1.00)
+    colors[mimgui.Col.HeaderActive]       = mimgui.ImVec4(0.30, 0.36, 0.45, 1.00)
+    colors[mimgui.Col.Separator]          = mimgui.ImVec4(0.22, 0.22, 0.26, 0.80)
+end
+
+-- ============================================================
+-- UI (ImGui OnFrame)
 -- ============================================================
 mimgui.OnFrame(function() return showMenu[0] end, function()
+    applyDarkTheme()
+
     local screenW, screenH = getScreenResolution()
     mimgui.SetNextWindowPos(mimgui.ImVec2(screenW / 2, screenH / 2), mimgui.Cond.FirstUseEver, mimgui.ImVec2(0.5, 0.5))
-    mimgui.SetNextWindowSize(mimgui.ImVec2(420, 520), mimgui.Cond.FirstUseEver)
-    mimgui.Begin("🗺 Teleport Manager", showMenu, mimgui.WindowFlags.NoCollapse)
-
-    mimgui.TextColored(colorTitle, "Daftar Checkpoint (CRUD)")
-    mimgui.Separator()
+    mimgui.SetNextWindowSize(mimgui.ImVec2(520, 480), mimgui.Cond.FirstUseEver)
+    
+    mimgui.Begin("Teleport Manager (CRUD)", showMenu, mimgui.WindowFlags.NoCollapse)
+    mimgui.TextDisabled("Author: Yohanez")
+    mimgui.Spacing()
+    mimgui.SetNextItemWidth(-1)
+    mimgui.InputTextWithHint("##search", "Search...", searchBuf, 127)
     mimgui.Spacing()
 
-    -- List existing checkpoints with edit fields
-    mimgui.BeginChild("CheckpointList", mimgui.ImVec2(0, -120), true)
+    -- 2. TABEL INTERAKTIF CHECKPOINT
+    local searchStr = ffi.string(searchBuf):lower()
+    
+    mimgui.BeginChild("TableChild", mimgui.ImVec2(0, 240), true)
+    
+    -- Table Header
+    mimgui.Columns(4, "CPTable", true)
+    mimgui.SetColumnWidth(0, 35)   -- ID
+    mimgui.SetColumnWidth(1, 140)  -- Name
+    mimgui.SetColumnWidth(2, 190)  -- Location
+    mimgui.SetColumnWidth(3, 115)  -- Actions
+
+    mimgui.TextColored(mimgui.ImVec4(0.7, 0.7, 0.75, 1.0), "ID")
+    mimgui.NextColumn()
+    mimgui.TextColored(mimgui.ImVec4(0.7, 0.7, 0.75, 1.0), "Name")
+    mimgui.NextColumn()
+    mimgui.TextColored(mimgui.ImVec4(0.7, 0.7, 0.75, 1.0), "Location")
+    mimgui.NextColumn()
+    mimgui.TextColored(mimgui.ImVec4(0.7, 0.7, 0.75, 1.0), "Actions")
+    mimgui.NextColumn()
+    mimgui.Separator()
+
     for i, cp in ipairs(checkpoints) do
-        -- use unique IDs via label suffix
-        local nameBuf = mimgui.new.char[64]()
-        ffi.copy(nameBuf, cp.name)
-        local xBuf = mimgui.new.float(cp.x)
-        local yBuf = mimgui.new.float(cp.y)
-        local zBuf = mimgui.new.float(cp.z)
-        mimgui.InputText("Name##"..i, nameBuf, 63)
-        mimgui.SameLine()
-        mimgui.InputFloat("X##"..i, xBuf, 0.0, 0.0, "%.3f")
-        mimgui.SameLine()
-        mimgui.InputFloat("Y##"..i, yBuf, 0.0, 0.0, "%.3f")
-        mimgui.SameLine()
-        mimgui.InputFloat("Z##"..i, zBuf, 0.0, 0.0, "%.3f")
-        mimgui.SameLine()
-        if mimgui.Button("Save##"..i) then
-            editCheckpoint(i, ffi.string(nameBuf), xBuf[0], yBuf[0], zBuf[0])
+        if searchStr == "" or cp.name:lower():find(searchStr, 1, true) then
+            -- Column 0: ID
+            mimgui.Text(tostring(i))
+            mimgui.NextColumn()
+
+            -- Column 1: Name
+            mimgui.Text(cp.name)
+            mimgui.NextColumn()
+
+            -- Column 2: Location (e.g. name: -484.485...)
+            mimgui.TextDisabled(string.format("name: %.3f", cp.x))
+            if mimgui.IsItemHovered() then
+                mimgui.SetTooltip(string.format("X: %.3f\nY: %.3f\nZ: %.3f", cp.x, cp.y, cp.z))
+            end
+            mimgui.NextColumn()
+
+            -- Column 3: Actions (Go, Edit ✏, Delete 🗑)
+            -- Go Button (Blue)
+            mimgui.PushStyleColor(mimgui.Col.Button, mimgui.ImVec4(0.18, 0.38, 0.68, 1.0))
+            mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.25, 0.48, 0.82, 1.0))
+            if mimgui.Button("Go##"..i, mimgui.ImVec2(30, 22)) then
+                teleportTo(i)
+            end
+            mimgui.PopStyleColor(2)
+
+            -- Edit Button (Pencil Icon)
+            mimgui.SameLine()
+            if mimgui.Button("✏##"..i, mimgui.ImVec2(24, 22)) then
+                editingIdx = i
+                ffi.copy(newNameBuf, cp.name)
+                ffi.copy(newLocBuf, string.format("%.3f, %.3f, %.3f", cp.x, cp.y, cp.z))
+            end
+            if mimgui.IsItemHovered() then
+                mimgui.SetTooltip("Edit checkpoint ini")
+            end
+
+            -- Delete Button (Red)
+            mimgui.SameLine()
+            mimgui.PushStyleColor(mimgui.Col.Button, mimgui.ImVec4(0.58, 0.18, 0.18, 1.0))
+            mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.78, 0.22, 0.22, 1.0))
+            if mimgui.Button("🗑##"..i, mimgui.ImVec2(24, 22)) then
+                deleteCheckpoint(i)
+                if editingIdx == i then
+                    editingIdx = -1
+                    ffi.copy(newNameBuf, "")
+                    ffi.copy(newLocBuf, "")
+                end
+            end
+            mimgui.PopStyleColor(2)
+            if mimgui.IsItemHovered() then
+                mimgui.SetTooltip("Hapus checkpoint ini")
+            end
+
+            mimgui.NextColumn()
         end
-        mimgui.SameLine()
-        if mimgui.Button("Delete##"..i) then
-            deleteCheckpoint(i)
-        end
-        mimgui.Spacing()
     end
+
+    mimgui.Columns(1)
     mimgui.EndChild()
 
     mimgui.Spacing()
-    -- Add new checkpoint section
-    mimgui.TextColored(colorGreen, "Tambah Checkpoint Baru")
-    local newName = mimgui.new.char[64]()
-    local newX = mimgui.new.float(0.0)
-    local newY = mimgui.new.float(0.0)
-    local newZ = mimgui.new.float(0.0)
-    mimgui.InputText("Name##new", newName, 63)
+    mimgui.Separator()
+    mimgui.Spacing()
+
+    -- 3. FORM TAMBAH / EDIT CHECKPOINT BARU
+    mimgui.TextColored(mimgui.ImVec4(0.9, 0.9, 0.9, 1.0), editingIdx > 0 and ("Edit Checkpoint #" .. editingIdx) or "Tambah Checkpoint Baru")
+    mimgui.Spacing()
+
+    -- Input Fields: Nama & Location
+    mimgui.Text("Nama:")
     mimgui.SameLine()
-    mimgui.InputFloat("X##new", newX, 0.0, 0.0, "%.3f")
+    mimgui.SetNextItemWidth(170)
+    mimgui.InputText("##newName", newNameBuf, 127)
+
     mimgui.SameLine()
-    mimgui.InputFloat("Y##new", newY, 0.0, 0.0, "%.3f")
+    mimgui.Text("Location")
     mimgui.SameLine()
-    mimgui.InputFloat("Z##new", newZ, 0.0, 0.0, "%.3f")
+    mimgui.SetNextItemWidth(160)
+    mimgui.InputTextWithHint("##newLoc", "-484.485, 120.100, 15.200", newLocBuf, 127)
+
+    -- Tombol "+" Ambil Posisi Player
     mimgui.SameLine()
-    if mimgui.Button("Add##new") then
-        local nameStr = ffi.string(newName)
-        if nameStr == "" then nameStr = "Checkpoint #"..(#checkpoints+1) end
-        addCheckpoint(nameStr, newX[0], newY[0], newZ[0])
-    end
-    mimgui.SameLine()
-    if mimgui.Button("Current##new") then
-        local nameStr = ffi.string(newName)
-        if nameStr == "" then nameStr = "Checkpoint #"..(#checkpoints+1) end
+    mimgui.PushStyleColor(mimgui.Col.Button, mimgui.ImVec4(0.20, 0.32, 0.50, 1.0))
+    mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.28, 0.42, 0.65, 1.0))
+    if mimgui.Button("+##getpos", mimgui.ImVec2(26, 24)) then
         local ped = PLAYER_PED
         local cx, cy, cz = getCharCoordinates(ped)
-        addCheckpoint(nameStr, cx, cy, cz)
+        local locStr = string.format("%.3f, %.3f, %.3f", cx, cy, cz)
+        ffi.copy(newLocBuf, locStr)
+    end
+    mimgui.PopStyleColor(2)
+
+    -- Tooltip saat tombol + di-hover
+    if mimgui.IsItemHovered() then
+        mimgui.SetTooltip("ambil data coordinat posisi player sekarang")
     end
 
     mimgui.Spacing()
-    if mimgui.Button("Reload route.json", mimgui.ImVec2(150, 30)) then
+    mimgui.Spacing()
+
+    -- 4. TOMBOL EKSEKUSI & MENYIMPAN (BOTTOM ACTIONS)
+    -- Left Button: Reload route.json
+    if mimgui.Button("🔄 Reload route json", mimgui.ImVec2(150, 28)) then
         loadRoute()
     end
+
+    -- Right Buttons: + Add New / Simpan & Close
     mimgui.SameLine()
-    if mimgui.Button("Close", mimgui.ImVec2(-1, 30)) then
+    mimgui.SetCursorPosX(mimgui.GetWindowWidth() - 200)
+
+    -- Add New / Simpan Button (Blue Accent)
+    mimgui.PushStyleColor(mimgui.Col.Button, mimgui.ImVec4(0.18, 0.38, 0.68, 1.0))
+    mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.25, 0.48, 0.82, 1.0))
+    local btnLabel = editingIdx > 0 and "💾 Simpan" or "+ Add New"
+    if mimgui.Button(btnLabel, mimgui.ImVec2(95, 28)) then
+        local nameStr = ffi.string(newNameBuf)
+        local locStr  = ffi.string(newLocBuf)
+        
+        -- Fallback koordinat dari posisi player jika location kosong
+        local x, y, z = parseLocation(locStr)
+        if not x or not y or not z then
+            local ped = PLAYER_PED
+            x, y, z = getCharCoordinates(ped)
+        end
+
+        if nameStr == "" then
+            nameStr = editingIdx > 0 and checkpoints[editingIdx].name or ("Checkpoint #" .. (#checkpoints + 1))
+        end
+
+        if editingIdx > 0 then
+            editCheckpoint(editingIdx, nameStr, x, y, z)
+            editingIdx = -1
+        else
+            addCheckpoint(nameStr, x, y, z)
+        end
+
+        ffi.copy(newNameBuf, "")
+        ffi.copy(newLocBuf, "")
+    end
+    mimgui.PopStyleColor(2)
+
+    -- Close Button
+    mimgui.SameLine()
+    if mimgui.Button("✕ Close", mimgui.ImVec2(85, 28)) then
         showMenu[0] = false
     end
 
@@ -219,7 +389,7 @@ function main()
         if idx then teleportTo(idx) else sampAddChatMessage("{FF0000}[Teleport] Gunakan: /tpgo <index>", -1) end
     end)
 
-    -- Add checkpoint via chat
+    -- Add checkpoint via chat (manual coordinates)
     sampRegisterChatCommand("tpadd", function(param)
         local name, x, y, z = param:match("^(%S+)%s+([%d%.%-]+)%s+([%d%.%-]+)%s+([%d%.%-]+)$")
         if name and x and y and z then
@@ -281,7 +451,8 @@ function main()
             sampAddChatMessage("{00FF00}[Teleport] Script dimuat! Commands:", -1)
             sampAddChatMessage("{FFFFFF}  /tp         → Buka menu teleport GUI", -1)
             sampAddChatMessage("{FFFFFF}  /tpgo <n>   → Teleport langsung ke checkpoint #n", -1)
-            sampAddChatMessage("{FFFFFF}  /tpadd <name> <x> <y> <z> → Tambah checkpoint", -1)
+            sampAddChatMessage("{FFFFFF}  /tpcord <nama> → Tambah checkpoint dari posisi saat ini", -1)
+            sampAddChatMessage("{FFFFFF}  /tpadd <name> <x> <y> <z> → Tambah checkpoint manual", -1)
             sampAddChatMessage("{FFFFFF}  /tpedit <n> <name> <x> <y> <z> → Edit checkpoint", -1)
             sampAddChatMessage("{FFFFFF}  /tpdel <n>  → Hapus checkpoint", -1)
             sampAddChatMessage("{FFFFFF}  /tplist     → List checkpoint di chat", -1)

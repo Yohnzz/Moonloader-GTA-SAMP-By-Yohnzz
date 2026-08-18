@@ -1,9 +1,10 @@
 script_name("AutoRP BERATAP CAFE")
-script_author("Arkananta Studio")
+script_author("Yohanez")
 
 require 'lib.sampfuncs'
 require 'lib.moonloader'
 local mimgui  = require 'lib.mimgui'
+local theme   = require 'lib.mimgui_theme'
 local encoding = require 'lib.encoding'
 local ev      = require 'lib.samp.events'
 local ffi     = require 'ffi'
@@ -128,10 +129,12 @@ function main()
     end)
 
     mimgui.OnFrame(function() return showWindow[0] end, function()
+        theme.applyDarkModern()
         mimgui.SetNextWindowSize(mimgui.ImVec2(520, 320), mimgui.Cond.FirstUseEver)
         mimgui.Begin("BERATAP CAFE MENU", showWindow)
 
         mimgui.Text("Auto RP BERATAP CAFE")
+        mimgui.TextDisabled("Author: Yohanez")
         mimgui.Separator()
 
         mimgui.TextWrapped(restoText1)

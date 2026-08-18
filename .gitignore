@@ -1,0 +1,10 @@
+# Log files
+logs.txt
+moonloader.log
+*.log
+
+# Ignore all contents in config/ except mimgui
+config/*
+!config/.gitignore
+!config/mimgui/
+!config/mimgui/**

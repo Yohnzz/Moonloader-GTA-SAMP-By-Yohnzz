@@ -11,11 +11,12 @@
 -- ============================================================
 
 script_name("TikTok Live Chat Overlay")
-script_author("Antigravity")
+script_author("Yohanez")
 script_description("Menampilkan TikTok Live Chat di overlay GTA SAMP")
 
 require "lib.moonloader"
 local mimgui   = require "mimgui"
+local theme    = require "lib.mimgui_theme"
 local ffi      = require "ffi"
 local json     = require "dkjson"
 local os       = require "os"
@@ -213,12 +214,15 @@ local function applyStyle()
     col[mimgui.Col.ScrollbarGrabHovered] = mimgui.ImVec4(0.15, 0.9, 0.9, 0.8)
 end
 
-mimgui.OnInitialize(applyStyle)
+mimgui.OnInitialize(function()
+    theme.applyDarkModern()
+end)
 
 -- ============================================================
 -- GUI - PANEL PENGATURAN (Main Window)
 -- ============================================================
 mimgui.OnFrame(function() return mainWindow[0] end, function()
+    theme.applyDarkModern()
     mimgui.SetNextWindowSize(mimgui.ImVec2(520, 340), mimgui.Cond.FirstUseEver)
     mimgui.SetNextWindowPos(mimgui.ImVec2(100, 120), mimgui.Cond.FirstUseEver)
     mimgui.Begin("📱 TikTok Live Chat - Setup Panel", mainWindow, mimgui.WindowFlags.NoCollapse)
@@ -227,6 +231,7 @@ mimgui.OnFrame(function() return mainWindow[0] end, function()
     mimgui.PushStyleColor(mimgui.Col.Text, mimgui.ImVec4(0.2, 0.9, 1.0, 1.0))
     mimgui.Text("📱 TikTok Live Chat Overlay")
     mimgui.PopStyleColor()
+    mimgui.TextDisabled("Author: Yohanez")
     mimgui.SameLine()
     
     local cfgExists = doesFileExist(cfgFile)
