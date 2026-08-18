@@ -2,6 +2,7 @@
 require 'lib.sampfuncs'
 require 'lib.moonloader'
 local mimgui = require 'lib.mimgui'
+local theme = require 'lib.mimgui_theme'
 local encoding = require 'lib.encoding'
 encoding.default = 'CP1252'
 local ffi = require "ffi"
@@ -925,13 +926,14 @@ function main()
 
     -- ===== GUI FRAME =====
     mimgui.OnFrame(function() return showWindow[0] end, function()
+        theme.applyDarkModern()
         targetSystem:update()  -- Update proximity detection
         processInvoiceQueue()  -- Process invoice commands
         
         mimgui.SetNextWindowSize(mimgui.ImVec2(700, 540), mimgui.Cond.FirstUseEver)
         mimgui.Begin('Auto RP Medis', showWindow)
 
-        mimgui.Text('Author: Arkananta Studio')
+        mimgui.Text('Author: Yohanez')
         
         -- Display nearest player info in red box
         mimgui.PushStyleColor(mimgui.Col.FrameBg, mimgui.ImVec4(0.85, 0.20, 0.20, 0.60))

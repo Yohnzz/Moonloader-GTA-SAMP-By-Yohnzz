@@ -5,11 +5,12 @@
 -- ============================================================
 
 script_name("Moonloader Manager")
-script_author("Antigravity")
+script_author("Yohanez")
 script_description("Mengatur hak akses command/script per server via config JSON")
 
 require "lib.moonloader"
 local mimgui  = require "mimgui"
+local theme   = require "lib.mimgui_theme"
 local ffi     = require "ffi"
 local json    = require "dkjson"
 local sampev  = require "lib.samp.events"
@@ -286,11 +287,13 @@ local cfgMsg = ""
 local cfgMsgColor = { 0.3, 1.0, 0.5 }
 
 mimgui.OnFrame(function() return showWindow[0] end, function()
+    theme.applyDarkModern()
     local sw, sh = getScreenResolution()
     mimgui.SetNextWindowPos(mimgui.ImVec2(sw / 2, sh / 2), mimgui.Cond.FirstUseEver, mimgui.ImVec2(0.5, 0.5))
     mimgui.SetNextWindowSize(mimgui.ImVec2(600, 480), mimgui.Cond.FirstUseEver)
 
     mimgui.Begin("Moonloader Manager - Server Access Control", showWindow, mimgui.WindowFlags.NoCollapse)
+    mimgui.TextDisabled("Author: Yohanez")
 
     -- Status bar
     local statColor = activeProfile

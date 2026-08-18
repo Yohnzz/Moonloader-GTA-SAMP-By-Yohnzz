@@ -1,0 +1,9 @@
+# Ignore everything in the config directory
+*
+
+# Do not ignore this .gitignore file
+!.gitignore
+
+# Allow mimgui directory and its contents
+!mimgui/
+!mimgui/**

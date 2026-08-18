@@ -1,10 +1,11 @@
 script_name("Kalkulator Medis")
-script_author("Arkananta Studio")
+script_author("Yohanez")
 
 require 'lib.sampfuncs'
 require 'lib.moonloader'
 local ffi = require 'ffi'
 local mimgui = require 'lib.mimgui'
+local theme = require 'lib.mimgui_theme'
 
 -- ======================
 -- VARIABEL
@@ -75,8 +76,10 @@ end
 -- GUI
 -- ======================
 mimgui.OnFrame(function() return showCalculatorWindow[0] end, function()
+    theme.applyDarkModern()
     mimgui.SetNextWindowSize(mimgui.ImVec2(300, 400), mimgui.Cond.FirstUseEver)
     mimgui.Begin("Kalkulator Medis", showCalculatorWindow)
+    mimgui.TextDisabled("Author: Yohanez")
 
     mimgui.InputText("##display", calcDisplay, mimgui.InputTextFlags.ReadOnly)
 

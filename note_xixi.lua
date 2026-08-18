@@ -1,9 +1,10 @@
 script_name("Notepad SAMP")
-script_author("Arkananta Studio")
+script_author("Yohanez")
 
 require 'lib.sampfuncs'
 require 'lib.moonloader'
 local mimgui = require 'lib.mimgui'
+local theme = require 'lib.mimgui_theme'
 local ffi = require 'ffi'
 local lfs = require 'lfs'
 
@@ -157,8 +158,10 @@ end
 -- GUI (mimgui)
 -- ========================
 mimgui.OnFrame(function() return showWindow[0] end, function()
+    theme.applyDarkModern()
     mimgui.SetNextWindowSize(mimgui.ImVec2(650, 450), mimgui.Cond.FirstUseEver)
     mimgui.Begin("📝 Notepad SAMP - Multi-File Edition", showWindow)
+    mimgui.TextDisabled("Author: Yohanez")
 
     -- Panel Kiri (Daftar File & Buat Baru)
     mimgui.BeginChild("LeftPanel", mimgui.ImVec2(200, 0), true)

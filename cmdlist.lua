@@ -4,11 +4,12 @@
 -- ============================================================
 
 script_name("CMD List")
-script_author("Antigravity")
+script_author("Yohanez")
 script_description("Daftar lengkap command & script Moonloader yang aktif")
 
 require "lib.moonloader"
 local mimgui = require "mimgui"
+local theme  = require "lib.mimgui_theme"
 local ffi    = require "ffi"
 
 -- ── UI STATE ─────────────────────────────────────────────────
@@ -301,23 +302,7 @@ local scriptData = {
 -- STYLE MIMGUI
 -- ============================================================
 mimgui.OnInitialize(function()
-    local style = mimgui.GetStyle()
-    style.WindowRounding  = 8.0
-    style.FrameRounding   = 5.0
-    style.GrabRounding    = 4.0
-
-    local col = style.Colors
-    col[mimgui.Col.WindowBg]       = mimgui.ImVec4(0.06, 0.07, 0.10, 0.97)
-    col[mimgui.Col.Border]         = mimgui.ImVec4(0.3, 0.65, 1.0, 0.50)
-    col[mimgui.Col.TitleBgActive]  = mimgui.ImVec4(0.10, 0.22, 0.40, 1.0)
-    col[mimgui.Col.Button]         = mimgui.ImVec4(0.12, 0.35, 0.60, 0.85)
-    col[mimgui.Col.ButtonHovered]  = mimgui.ImVec4(0.20, 0.50, 0.80, 0.90)
-    col[mimgui.Col.FrameBg]        = mimgui.ImVec4(0.08, 0.14, 0.22, 0.90)
-    col[mimgui.Col.FrameBgHovered] = mimgui.ImVec4(0.14, 0.24, 0.36, 1.0)
-    col[mimgui.Col.ScrollbarGrab]  = mimgui.ImVec4(0.20, 0.55, 0.80, 0.70)
-    col[mimgui.Col.CheckMark]      = mimgui.ImVec4(0.3, 0.8, 1.0, 1.0)
-    col[mimgui.Col.Separator]      = mimgui.ImVec4(0.3, 0.6, 0.9, 0.30)
-    col[mimgui.Col.Text]           = mimgui.ImVec4(0.92, 0.95, 0.98, 1.0)
+    theme.applyDarkModern()
 end)
 
 -- ============================================================
@@ -329,6 +314,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     mimgui.SetNextWindowSize(mimgui.ImVec2(640, 580), mimgui.Cond.FirstUseEver)
 
     mimgui.Begin("SAMP Command & Script List", showMenu, mimgui.WindowFlags.NoCollapse)
+    mimgui.TextDisabled("Author: Yohanez")
 
     mimgui.TextColored(colorTitle, "Daftar lengkap command & script yang aktif di Moonloader kamu.")
     mimgui.Spacing()

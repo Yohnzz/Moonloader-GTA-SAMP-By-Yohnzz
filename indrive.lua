@@ -3,6 +3,7 @@
 require 'lib.sampfuncs'
 require 'lib.moonloader'
 local mimgui = require 'lib.mimgui'
+local theme = require 'lib.mimgui_theme'
 local encoding = require 'lib.encoding'
 encoding.default = 'CP1252'
 local ffi = require "ffi"
@@ -260,8 +261,10 @@ function main()
     end)
 
     mimgui.OnFrame(function() return showWindow[0] end, function()
+        theme.applyDarkModern()
         mimgui.SetNextWindowSize(mimgui.ImVec2(600, 400), mimgui.Cond.FirstUseEver)
         mimgui.Begin('Auto RP TRANS - Hummatech Edition', showWindow)
+        mimgui.TextDisabled("Author: Yohanez")
 
         -- Panel Kiri
         mimgui.BeginChild('CategoryList', mimgui.ImVec2(200, 0), true)
