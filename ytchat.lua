@@ -51,7 +51,7 @@ local tmpDir   = cfgDir  .. "\\tmp\\"
 -- STATE & KONFIGURASI
 -- ============================================================
 local mainWindow     = mimgui.new.bool(false)
-local overlayWindow  = mimgui.new.bool(true)
+local overlayWindow  = mimgui.new.bool(false)
 
 local bufApiKey   = mimgui.new.char[256]("")
 local bufVideoUrl = mimgui.new.char[512]("")
@@ -667,7 +667,7 @@ mimgui.OnFrame(function() return overlayWindow[0] end, function()
     -- Tombol tutup overlay
     mimgui.SameLine()
     mimgui.SetCursorPosX(mimgui.GetContentRegionAvail().x - 18)
-    if mimgui.SmallButton("×") then
+    if mimgui.SmallButton("X") then
         overlayWindow[0] = false
     end
 
