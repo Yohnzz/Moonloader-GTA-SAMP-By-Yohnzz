@@ -1,0 +1,11 @@
+{
+  "servers":[{
+      "blocked":["note_xixi"],
+      "match":"Mayday RP",
+      "id":"server_1"
+    },{
+      "blocked":["kalkulator"],
+      "match":"Nasional",
+      "id":"server_2"
+    }]
+}

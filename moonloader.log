@@ -1,5 +1,5 @@
-[17:58:38.673981] (system)	Session started.
-[17:58:38.674981] (debug)	Module handle: 69C90000
+[20:39:04.230495] (system)	Session started.
+[20:39:04.230495] (debug)	Module handle: 69BA0000
 
 MoonLoader v.026.5-beta loaded.
 Developers: FYP, hnnssy, EvgeN 1137
@@ -7,129 +7,152 @@ Developers: FYP, hnnssy, EvgeN 1137
 Copyright (c) 2016, BlastHack Team
 http://blast.hk/moonloader/
 
-[17:58:38.674981] (info)	Working directory: D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader
-[17:58:38.674981] (debug)	FP Control: 0009001F
-[17:58:38.674981] (debug)	Game: GTA SA 1.0.0.0 US
-[17:58:38.674981] (system)	Installing pre-game hooks...
-[17:58:38.676980] (system)	Hooks installed.
-[17:58:42.017337] (debug)	Initializing opcode handler table
-[17:58:42.017337] (debug)	package.path = D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?.lua;D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?\init.lua;D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?.lua;D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?\init.lua;.\?.lua;D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?.luac;D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?\init.luac;D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?.luac;D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?\init.luac;.\?.luac
-[17:58:42.017337] (debug)	package.cpath = D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?.dll;
-[17:58:42.022293] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\antiafk.lua'...
-[17:58:42.022293] (debug)	New script: 129AAF5C
-[17:58:42.038982] (system)	AutoAntiAFK: Loaded successfully.
-[17:58:42.039495] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autofish.lua'...
-[17:58:42.039495] (debug)	New script: 129A9B74
-[17:58:42.044531] (system)	AutoFish: Loaded successfully.
-[17:58:42.044531] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autofishit.lua'...
-[17:58:42.044531] (debug)	New script: 129AA00C
-[17:58:42.049497] (system)	Auto Fish It: Loaded successfully.
-[17:58:42.049497] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\AutoOtot.luac'...
-[17:58:42.049497] (debug)	New script: 129AB0E4
-[17:58:42.077162] (system)	AutoOtot: Loaded successfully.
-[17:58:42.077162] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autopay.lua'...
-[17:58:42.077162] (debug)	New script: 129AB3F4
-[17:58:42.083181] (system)	Auto Pay: Loaded successfully.
-[17:58:42.083181] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\AutoReboot.lua'...
-[17:58:42.083181] (debug)	New script: 129AA93C
-[17:58:42.085158] (system)	ML-AutoReboot: Loaded successfully.
-[17:58:42.085158] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autoreconnect.lua'...
-[17:58:42.085158] (debug)	New script: 129AA4A4
-[17:58:42.091196] (system)	Auto Reconnect: Loaded successfully.
-[17:58:42.092196] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autowalk.lua'...
-[17:58:42.092196] (debug)	New script: 129AB57C
-[17:58:42.109217] (system)	autowalk.lua: Loaded successfully.
-[17:58:42.110216] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\check-moonloader-updates.lua'...
-[17:58:42.110216] (debug)	New script: 129AB704
-[17:58:42.113454] (system)	Check MoonLoader Updates: Loaded successfully.
-[17:58:42.113454] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\cmdlist.lua'...
-[17:58:42.113454] (debug)	New script: 129AA194
-[17:58:42.127693] (system)	Command List Menu: Loaded successfully.
-[17:58:42.127693] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\customcustom.lua'...
-[17:58:42.127693] (debug)	New script: 129AB88C
-[17:58:42.152340] (system)	customcustom.lua: Loaded successfully.
-[17:58:42.152340] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\detect_id.lua'...
-[17:58:42.152340] (debug)	New script: 129A9CFC
-[17:58:42.157341] (system)	detect_id.lua: Loaded successfully.
-[17:58:42.157341] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\dmginf.lua'...
-[17:58:42.157341] (debug)	New script: 129A9E84
-[17:58:42.369190] (system)	dmginf.lua: Loaded successfully.
-[17:58:42.369190] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\GameFixer.lua'...
-[17:58:42.369190] (debug)	New script: 129AA31C
-[17:58:42.407402] (system)	GameFixer.lua: Loaded successfully.
-[17:58:42.407402] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\id_textdraw_check.lua'...
-[17:58:42.407402] (debug)	New script: 129AA7B4
-[17:58:42.413473] (system)	Universal & Click Detector: Loaded successfully.
-[17:58:42.413473] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\indrive.lua'...
-[17:58:42.413473] (debug)	New script: 129AAC4C
-[17:58:42.436802] (system)	indrive.lua: Loaded successfully.
-[17:58:42.436802] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\invoice.lua'...
-[17:58:42.436802] (debug)	New script: 129AA62C
-[17:58:42.445419] (system)	invoice.lua: Loaded successfully.
-[17:58:42.445419] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\kalkulator.lua'...
-[17:58:42.445419] (debug)	New script: 12BEFE04
-[17:58:42.458432] (system)	Kalkulator Medis: Loaded successfully.
-[17:58:42.458432] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\kayuafk.lua'...
-[17:58:42.458432] (debug)	New script: 12BEFF8C
-[17:58:42.462431] (system)	AutoJobKayu: Loaded successfully.
-[17:58:42.462431] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\keylogger.lua'...
-[17:58:42.462431] (debug)	New script: 12BF0BCC
-[17:58:42.465431] (system)	keylogger.lua: Loaded successfully.
-[17:58:42.465431] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\killStreakBlade.lua'...
-[17:58:42.465431] (debug)	New script: 12BF0D54
-[17:58:42.471086] (system)	killStreakBlade.lua: Loaded successfully.
-[17:58:42.471086] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib.lua'...
-[17:58:42.471086] (debug)	New script: 12BF0114
-[17:58:42.478099] (system)	lib.lua: Loaded successfully.
-[17:58:42.479099] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\medis.lua'...
-[17:58:42.479099] (debug)	New script: 12BF029C
-[17:58:42.501813] (system)	medis.lua: Loaded successfully.
-[17:58:42.501813] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\nametags.lua'...
-[17:58:42.501813] (debug)	New script: 12BF05AC
-[17:58:42.515379] (system)	nametags: Loaded successfully.
-[17:58:42.515379] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\note_xixi.lua'...
-[17:58:42.515379] (debug)	New script: 12BEF03C
-[17:58:42.525438] (system)	Notepad SAMP: Loaded successfully.
-[17:58:42.525438] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\Police Helper Reborn.luac'...
-[17:58:42.525438] (debug)	New script: 12BF0424
-[17:58:42.573959] (system)	Police Helper Manager: Loaded successfully.
-[17:58:42.573959] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\reload_all.lua'...
-[17:58:42.573959] (debug)	New script: 12BF0734
-[17:58:42.574987] (system)	ML-ReloadAll: Loaded successfully.
-[17:58:42.574987] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\resto.lua'...
-[17:58:42.574987] (debug)	New script: 12BEF1C4
-[17:58:42.590406] (system)	AutoRP BERATAP CAFE: Loaded successfully.
-[17:58:42.590406] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\SF Integration.lua'...
-[17:58:42.590406] (debug)	New script: 12BF08BC
-[17:58:42.593404] (system)	SF Integration: Loaded successfully.
-[17:58:42.593404] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\simple-fpsboost.lua'...
-[17:58:42.593404] (debug)	New script: 12BF0A44
-[17:58:42.594403] (system)	simple-fpsboost.lua: Loaded successfully.
-[17:58:42.594403] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\teleport.lua'...
-[17:58:42.594403] (debug)	New script: 12BEF34C
-[17:58:42.605811] (system)	AutoTeleport: Loaded successfully.
-[17:58:42.605811] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\voice_clear.lua'...
-[17:58:42.605811] (debug)	New script: 12BEF4D4
-[17:58:42.610287] (system)	Voice Smart Fix: Loaded successfully.
-[17:58:42.610287] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\workshop.lua'...
-[17:58:42.610287] (debug)	New script: 12BEFC7C
-[17:58:42.628349] (system)	workshop.lua: Loaded successfully.
-[17:58:42.628349] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\ytchat.lua'...
-[17:58:42.628349] (debug)	New script: 12BEF96C
-[17:58:42.641824] (system)	YT Live Chat Overlay: Loaded successfully.
-[17:58:46.082878] (system)	Installing post-load hooks...
-[17:58:46.082878] (system)	Hooks installed.
-[17:58:46.087082] (script)	Police Helper Manager: Compatibility test passed.
-[17:58:46.087082] (script)	Police Helper Manager: Installed manager version: 5 | 1.1.1b
-[17:58:46.088593] (script)	Police Helper Manager: Reborn core build type: Stable
-[17:58:46.088593] (system)	Loading script 'D:\Game Folder\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\Police Helper Reborn\Police Helper Reborn.luac'...
-[17:58:46.088593] (debug)	New script: 2020CA54
-[17:58:46.144513] (script)	Police Helper Reborn: [mimgui] Warning! Overwriting existing key "InputText"!
-[17:58:46.147032] (system)	Police Helper Reborn: Loaded successfully.
-[17:58:46.147032] (script)	Police Helper Manager: Reborn core version: 93 | 1.2.8
-[17:58:46.147032] (script)	Police Helper Manager: Checking for updates...
-[17:58:48.150174] (script)	Police Helper Manager: Manager done his work. Unloading...
-[17:58:49.315609] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 13
-[17:58:57.837652] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 12
-[18:00:06.728234] (system)	Unloading...
-[18:00:06.728234] (system)	Unloading...
+[20:39:04.231494] (info)	Working directory: F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader
+[20:39:04.231494] (debug)	FP Control: 0009001F
+[20:39:04.231494] (debug)	Game: GTA SA 1.0.0.0 US
+[20:39:04.231494] (system)	Installing pre-game hooks...
+[20:39:04.233044] (system)	Hooks installed.
+[20:39:07.143320] (debug)	Initializing opcode handler table
+[20:39:07.143320] (debug)	package.path = F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?.lua;F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?\init.lua;F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?.lua;F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?\init.lua;.\?.lua;F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?.luac;F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?\init.luac;F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?.luac;F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\?\init.luac;.\?.luac
+[20:39:07.143320] (debug)	package.cpath = F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib\?.dll;
+[20:39:07.147575] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\0_moonloader_manager_server.lua'...
+[20:39:07.147575] (debug)	New script: 116FD17C
+[20:39:07.165425] (system)	Moonloader Manager: Loaded successfully.
+[20:39:07.165425] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\antiafk.lua'...
+[20:39:07.165425] (debug)	New script: 116FDC34
+[20:39:07.169842] (system)	AutoAntiAFK: Loaded successfully.
+[20:39:07.169842] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autofish.lua'...
+[20:39:07.169842] (debug)	New script: 116FD614
+[20:39:07.175641] (system)	AutoFish: Loaded successfully.
+[20:39:07.176281] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autofishit.lua'...
+[20:39:07.176281] (debug)	New script: 116FCB5C
+[20:39:07.180953] (system)	Auto Fish It: Loaded successfully.
+[20:39:07.180953] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\AutoOtot.luac'...
+[20:39:07.180953] (debug)	New script: 116FC3B4
+[20:39:07.195631] (system)	AutoOtot: Loaded successfully.
+[20:39:07.195631] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autopay.lua'...
+[20:39:07.195631] (debug)	New script: 116FCE6C
+[20:39:07.199284] (system)	Auto Pay: Loaded successfully.
+[20:39:07.199284] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\AutoReboot.lua'...
+[20:39:07.199284] (debug)	New script: 116FD79C
+[20:39:07.200296] (system)	ML-AutoReboot: Loaded successfully.
+[20:39:07.200296] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autoreconnect.lua'...
+[20:39:07.200296] (debug)	New script: 116FCCE4
+[20:39:07.205009] (system)	Auto Reconnect: Loaded successfully.
+[20:39:07.205009] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\autowalk.lua'...
+[20:39:07.205009] (debug)	New script: 116FD48C
+[20:39:07.218465] (system)	autowalk.lua: Loaded successfully.
+[20:39:07.218465] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\check-moonloader-updates.lua'...
+[20:39:07.218465] (debug)	New script: 116FCFF4
+[20:39:07.220565] (system)	Check MoonLoader Updates: Loaded successfully.
+[20:39:07.220565] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\cmdlist.lua'...
+[20:39:07.220565] (debug)	New script: 116FD304
+[20:39:07.229486] (system)	CMD List: Loaded successfully.
+[20:39:07.229486] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\DDOS Ngaceng.lua'...
+[20:39:07.229486] (debug)	New script: 116FDDBC
+[20:39:07.230510] (system)	Mainly: Loaded successfully.
+[20:39:07.230510] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\detect_id.lua'...
+[20:39:07.230510] (debug)	New script: 116FC0A4
+[20:39:07.233123] (system)	detect_id.lua: Loaded successfully.
+[20:39:07.233123] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\dmginf.lua'...
+[20:39:07.233123] (debug)	New script: 116FC53C
+[20:39:07.424644] (system)	dmginf.lua: Loaded successfully.
+[20:39:07.424644] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\GameFixer.lua'...
+[20:39:07.424644] (debug)	New script: 116FC6C4
+[20:39:07.451611] (system)	GameFixer.lua: Loaded successfully.
+[20:39:07.451611] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\id_textdraw_check.lua'...
+[20:39:07.451611] (debug)	New script: 116FC84C
+[20:39:07.455277] (system)	Universal & Click Detector: Loaded successfully.
+[20:39:07.455277] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\indrive.lua'...
+[20:39:07.455277] (debug)	New script: 116FC9D4
+[20:39:07.469296] (system)	indrive.lua: Loaded successfully.
+[20:39:07.469296] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\invoice.lua'...
+[20:39:07.469296] (debug)	New script: 11986E1C
+[20:39:07.475718] (system)	invoice.lua: Loaded successfully.
+[20:39:07.475718] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\kalkulator.lua'...
+[20:39:07.475718] (debug)	New script: 11986B0C
+[20:39:07.484818] (system)	Kalkulator Medis: Loaded successfully.
+[20:39:07.484818] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\kayuafk.lua'...
+[20:39:07.484818] (debug)	New script: 11986984
+[20:39:07.492538] (system)	AutoJobKayu: Loaded successfully.
+[20:39:07.492538] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\keylogger.lua'...
+[20:39:07.492538] (debug)	New script: 11986674
+[20:39:07.495130] (system)	keylogger.lua: Loaded successfully.
+[20:39:07.495130] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\killStreakBlade.lua'...
+[20:39:07.495130] (debug)	New script: 11985724
+[20:39:07.499326] (system)	killStreakBlade.lua: Loaded successfully.
+[20:39:07.499326] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\lib.lua'...
+[20:39:07.499326] (debug)	New script: 1198559C
+[20:39:07.507296] (system)	lib.lua: Loaded successfully.
+[20:39:07.507296] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\medis.lua'...
+[20:39:07.507296] (debug)	New script: 11985414
+[20:39:07.528260] (system)	medis.lua: Loaded successfully.
+[20:39:07.528260] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\nametags.lua'...
+[20:39:07.528260] (debug)	New script: 119867FC
+[20:39:07.541837] (system)	nametags: Loaded successfully.
+[20:39:07.541837] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\note_xixi.lua'...
+[20:39:07.541837] (debug)	New script: 119861DC
+[20:39:07.554985] (system)	Notepad SAMP: Loaded successfully.
+[20:39:07.554985] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\Police Helper Reborn.luac'...
+[20:39:07.554985] (debug)	New script: 119864EC
+[20:39:07.602387] (system)	Police Helper Manager: Loaded successfully.
+[20:39:07.602387] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\reload_all.lua'...
+[20:39:07.602387] (debug)	New script: 11986C94
+[20:39:07.603900] (system)	ML-ReloadAll: Loaded successfully.
+[20:39:07.603900] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\resto.lua'...
+[20:39:07.603900] (debug)	New script: 119858AC
+[20:39:07.623094] (system)	AutoRP BERATAP CAFE: Loaded successfully.
+[20:39:07.623094] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\SF Integration.lua'...
+[20:39:07.623094] (debug)	New script: 11986FA4
+[20:39:07.625113] (system)	SF Integration: Loaded successfully.
+[20:39:07.625113] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\simple-fpsboost.lua'...
+[20:39:07.625113] (debug)	New script: 1198712C
+[20:39:07.625113] (system)	simple-fpsboost.lua: Loaded successfully.
+[20:39:07.625113] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\teleport.lua'...
+[20:39:07.625113] (debug)	New script: 11985A34
+[20:39:07.639395] (system)	AutoTeleport: Loaded successfully.
+[20:39:07.639395] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\ttchat.lua'...
+[20:39:07.639395] (debug)	New script: 11986364
+[20:39:07.651554] (system)	TikTok Live Chat Overlay: Loaded successfully.
+[20:39:07.651554] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\voice_clear.lua'...
+[20:39:07.651554] (debug)	New script: 11986054
+[20:39:07.658145] (system)	Voice Smart Fix: Loaded successfully.
+[20:39:07.658145] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\workshop.lua'...
+[20:39:07.658145] (debug)	New script: 11985BBC
+[20:39:07.680568] (system)	workshop.lua: Loaded successfully.
+[20:39:07.681568] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\ytchat.lua'...
+[20:39:07.681568] (debug)	New script: 11985D44
+[20:39:07.694300] (system)	YT Live Chat Overlay: Loaded successfully.
+[20:39:09.703087] (system)	Installing post-load hooks...
+[20:39:09.703087] (system)	Hooks installed.
+[20:39:09.709867] (script)	Police Helper Manager: Compatibility test passed.
+[20:39:09.709867] (script)	Police Helper Manager: Installed manager version: 5 | 1.1.1b
+[20:39:09.709867] (script)	Police Helper Manager: Reborn core build type: Stable
+[20:39:09.709867] (system)	Loading script 'F:\Game\GTA SA SAMP\GTA SAMP POLOSAN TINGGAL PAKE (With SAMP ADDON)\GTA\moonloader\Police Helper Reborn\Police Helper Reborn.luac'...
+[20:39:09.709867] (debug)	New script: 20F43C04
+[20:39:09.765484] (script)	Police Helper Reborn: [mimgui] Warning! Overwriting existing key "InputText"!
+[20:39:09.767044] (system)	Police Helper Reborn: Loaded successfully.
+[20:39:09.767044] (script)	Police Helper Manager: Reborn core version: 93 | 1.2.8
+[20:39:09.767044] (script)	Police Helper Manager: Checking for updates...
+[20:39:11.618621] (script)	Police Helper Manager: Manager done his work. Unloading...
+[20:39:12.832948] (script)	Moonloader Manager: [Manager Debug] findProfileForServer: name='mayday roleplay | hidup lebih nyaman di sini', addr='15.235.133.208'
+[20:39:12.833488] (script)	Moonloader Manager: [Manager Debug] srv 1 match pattern: 'mayday rp'
+[20:39:12.833488] (script)	Moonloader Manager: [Manager Debug] srv 2 match pattern: 'nasional'
+[20:39:12.833488] (script)	Moonloader Manager: [Manager Debug] applyProfile: serverProfile is nil. All scripts allowed.
+[20:40:10.394366] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 367
+[20:40:14.746923] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 484
+[20:40:59.791875] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 461
+[20:41:33.946183] (script)	Moonloader Manager: [Manager Debug] onSendCommand: '/pay 33 50000' -> owner: nil
+[20:41:34.099228] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 32700
+[20:41:35.431408] (script)	Moonloader Manager: [Manager Debug] onSendCommand: '/pay 33 50000' -> owner: nil
+[20:41:35.562008] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 32700
+[20:41:47.842427] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 13
+[20:41:49.018353] (script)	Moonloader Manager: [Manager Debug] findProfileForServer: name='mayday roleplay | ceritamu dimulai di sini', addr='15.235.133.208'
+[20:41:49.018353] (script)	Moonloader Manager: [Manager Debug] srv 1 match pattern: 'mayday rp'
+[20:41:49.018353] (script)	Moonloader Manager: [Manager Debug] srv 2 match pattern: 'nasional'
+[20:41:49.018353] (script)	Moonloader Manager: [Manager Debug] applyProfile: serverProfile is nil. All scripts allowed.
+[20:42:27.406712] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 428
+[20:47:30.898297] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 32700
+[20:47:32.148373] (script)	Universal & Click Detector: [Detector Polling] Active Dialog - ID: 32700
+[20:47:43.611338] (system)	Unloading...
+[20:47:43.611338] (system)	Unloading...

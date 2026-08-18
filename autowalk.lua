@@ -183,14 +183,14 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
         mimgui.Cond.FirstUseEver, mimgui.ImVec2(0.5, 0.5))
     mimgui.SetNextWindowSize(mimgui.ImVec2(520, 500), mimgui.Cond.FirstUseEver)
 
-    mimgui.Begin("🚶 AutoWalk Manager", showMenu, mimgui.WindowFlags.NoCollapse)
+    mimgui.Begin("AutoWalk Manager", showMenu, mimgui.WindowFlags.NoCollapse)
 
     -- ── Header Status ──────────────────────────────────────
     local statusColor = enabled
         and mimgui.ImVec4(0.2, 1.0, 0.3, 1.0)
         or  mimgui.ImVec4(1.0, 0.35, 0.35, 1.0)
     mimgui.PushStyleColor(mimgui.Col.Text, statusColor)
-    mimgui.Text(enabled and "● AUTOWALK AKTIF" or "● AUTOWALK NON-AKTIF")
+    mimgui.Text(enabled and "AUTOWALK AKTIF" or "AUTOWALK NON-AKTIF")
     mimgui.PopStyleColor()
 
     mimgui.SameLine()
@@ -200,12 +200,12 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
         and mimgui.ImVec4(1.0, 0.85, 0.1, 1.0)
         or  mimgui.ImVec4(0.5, 0.5, 0.5, 0.8)
     mimgui.PushStyleColor(mimgui.Col.Text, sprintColor)
-    mimgui.Text(isSprint and "  🏃 SPRINT" or "  🚶 JALAN")
+    mimgui.Text(isSprint and "  [SPRINT]" or "  [JALAN]")
     mimgui.PopStyleColor()
 
     mimgui.SameLine()
     mimgui.SetCursorPosX(mimgui.GetContentRegionAvail().x - 30)
-    if mimgui.SmallButton("✕") then showMenu[0] = false end
+    if mimgui.SmallButton("X") then showMenu[0] = false end
 
     -- File aktif
     mimgui.PushStyleColor(mimgui.Col.Text, mimgui.ImVec4(0.5, 0.8, 1.0, 0.9))
@@ -223,17 +223,17 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     if enabled then
         mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.55, 0.08, 0.08, 0.9))
         mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.75, 0.12, 0.12, 0.9))
-        if mimgui.Button("⏹ Stop AutoWalk", mimgui.ImVec2(160, 32)) then
+        if mimgui.Button("Stop AutoWalk", mimgui.ImVec2(160, 32)) then
             enabled = false
             sampAddChatMessage("{FF4444}[AUTOWALK] Dihentikan.", -1)
         end
         mimgui.PopStyleColor(2)
     else
-        if mimgui.Button("▶ Mulai AutoWalk", mimgui.ImVec2(160, 32)) then
+        if mimgui.Button("Mulai AutoWalk", mimgui.ImVec2(160, 32)) then
             if not selectedFile then
-                guiMsg = "❌ Pilih file dulu!"
+                guiMsg = "Pilih file dulu!"
             elseif #coordinates == 0 then
-                guiMsg = "❌ File kosong, tidak ada koordinat!"
+                guiMsg = "File kosong, tidak ada koordinat!"
             else
                 enabled = true
                 sampAddChatMessage("{00FF00}[AUTOWALK] Dimulai! File: " .. basename(selectedFile), -1)
@@ -247,7 +247,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     if isSprint then
         mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.55, 0.45, 0.05, 0.9))
         mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.75, 0.62, 0.08, 0.9))
-        if mimgui.Button("🚶 Ganti ke Jalan", mimgui.ImVec2(155, 32)) then
+        if mimgui.Button("Ganti ke Jalan", mimgui.ImVec2(155, 32)) then
             isSprint = false
             saveCurrentFile()
             sampAddChatMessage("{00FFFF}[AUTOWALK] Mode: Jalan (Walk)", -1)
@@ -256,7 +256,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     else
         mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.08, 0.35, 0.42, 0.9))
         mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.10, 0.50, 0.60, 0.9))
-        if mimgui.Button("🏃 Ganti ke Sprint", mimgui.ImVec2(155, 32)) then
+        if mimgui.Button("Ganti ke Sprint", mimgui.ImVec2(155, 32)) then
             isSprint = true
             saveCurrentFile()
             sampAddChatMessage("{FFFF00}[AUTOWALK] Mode: Sprint (Lari)", -1)
@@ -267,14 +267,14 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     mimgui.SameLine()
 
     -- Simpan koordinat sekarang
-    if mimgui.Button("📍 Simpan Posisi", mimgui.ImVec2(140, 32)) then
+    if mimgui.Button("Simpan Posisi", mimgui.ImVec2(140, 32)) then
         if not selectedFile then
-            guiMsg = "❌ Pilih file dulu sebelum simpan posisi!"
+            guiMsg = "Pilih file dulu sebelum simpan posisi!"
         else
             local px, py, pz = getCharCoordinates(PLAYER_PED)
             table.insert(coordinates, {px, py, pz, 11, -255, isSprint})
             saveCurrentFile()
-            guiMsg = "✅ Posisi #" .. #coordinates .. " disimpan!"
+            guiMsg = "Posisi #" .. #coordinates .. " disimpan!"
             sampAddChatMessage("{00FF00}[AUTOWALK] Koordinat #" .. #coordinates .. " ditambahkan.", -1)
         end
     end
@@ -283,9 +283,9 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     mimgui.Separator()
 
     -- ── Panel kiri: Daftar File ─────────────────────────────
-    mimgui.Text("📂 Daftar File Route:")
+    mimgui.Text("Daftar File Route:")
     mimgui.SameLine()
-    if mimgui.SmallButton("🔄 Refresh") then
+    if mimgui.SmallButton("Refresh") then
         scanFileList()
         guiMsg = "Daftar diperbarui. " .. #fileList .. " file ditemukan."
     end
@@ -298,26 +298,26 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     mimgui.InputText("##newfile", bufNewFile, 128)
     mimgui.PopItemWidth()
     mimgui.SameLine()
-    if mimgui.Button("➕ Buat", mimgui.ImVec2(70, 0)) then
+    if mimgui.Button("Buat", mimgui.ImVec2(70, 0)) then
         local fname = ffi.string(bufNewFile):gsub("^%s*(.-)%s*$", "%1")
         if fname == "" then
-            guiMsg = "❌ Nama file tidak boleh kosong!"
+            guiMsg = "Nama file tidak boleh kosong!"
         else
             if not fname:match("%.json$") then fname = fname .. ".json" end
             ensureDirectoryExists(basePath)
             local fpath = basePath .. "\\" .. fname
             if doesFileExist(fpath) then
-                guiMsg = "❌ File sudah ada: " .. fname
+                guiMsg = "File sudah ada: " .. fname
             else
                 local nf = io.open(fpath, "w")
                 if nf then
                     nf:write(json.encode({points={}, waitTime=8000, clickKeyName=nil, clickDelay=0, isSprint=false}))
                     nf:close()
                     scanFileList()
-                    guiMsg = "✅ File dibuat: " .. fname
+                    guiMsg = "File dibuat: " .. fname
                     sampAddChatMessage("{00FF00}[AUTOWALK] File baru: " .. fname, -1)
                 else
-                    guiMsg = "❌ Gagal membuat file!"
+                    guiMsg = "Gagal membuat file!"
                 end
             end
         end
@@ -330,7 +330,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
 
     if #fileList == 0 then
         mimgui.PushStyleColor(mimgui.Col.Text, mimgui.ImVec4(0.5, 0.5, 0.5, 0.7))
-        mimgui.Text("  Belum ada file. Klik 🔄 Refresh atau buat file baru.")
+        mimgui.Text("  Belum ada file. Klik Refresh atau buat file baru.")
         mimgui.PopStyleColor()
     else
         for i, finfo in ipairs(fileList) do
@@ -346,7 +346,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
                 mimgui.PushStyleColor(mimgui.Col.Text, mimgui.ImVec4(0.85, 0.85, 0.85, 1.0))
             end
 
-            local icon = isActive and "✔ " or "  "
+            local icon = isActive and ">> " or "   "
             if mimgui.Selectable(icon .. finfo.name .. "##" .. i, isSelected or isActive) then
                 selectedIdx = i
             end
@@ -365,13 +365,13 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
         mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.2, 0.2, 0.2, 0.5))
         mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.2, 0.2, 0.2, 0.5))
     end
-    if mimgui.Button("✔ Gunakan", mimgui.ImVec2(100, 28)) and canAct then
+    if mimgui.Button("Gunakan", mimgui.ImVec2(100, 28)) and canAct then
         local fi = fileList[selectedIdx]
         if loadFile(fi.path) then
-            guiMsg = "✅ File dimuat: " .. fi.name .. " | " .. #coordinates .. " titik"
+            guiMsg = "File dimuat: " .. fi.name .. " | " .. #coordinates .. " titik"
             sampAddChatMessage("{00FF00}[AUTOWALK] File dipilih: " .. fi.name, -1)
         else
-            guiMsg = "❌ Gagal membuka file: " .. fi.name
+            guiMsg = "Gagal membuka file: " .. fi.name
         end
     end
     if not canAct then mimgui.PopStyleColor(2) end
@@ -386,7 +386,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
         mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.50, 0.06, 0.06, 0.9))
         mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.72, 0.10, 0.10, 0.9))
     end
-    if mimgui.Button("🗑 Hapus", mimgui.ImVec2(90, 28)) and canAct then
+    if mimgui.Button("Hapus", mimgui.ImVec2(90, 28)) and canAct then
         local fi = fileList[selectedIdx]
         if selectedFile == fi.path then
             selectedFile = nil
@@ -396,7 +396,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
         deleteFile(fi.path)
         scanFileList()
         selectedIdx = 0
-        guiMsg = "🗑 File dihapus: " .. fi.name
+        guiMsg = "File dihapus: " .. fi.name
         sampAddChatMessage("{FF4444}[AUTOWALK] File dihapus: " .. fi.name, -1)
     end
     mimgui.PopStyleColor(2)
@@ -408,7 +408,7 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
         mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.2, 0.2, 0.2, 0.5))
         mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.2, 0.2, 0.2, 0.5))
     end
-    if mimgui.Button("👁 Preview", mimgui.ImVec2(85, 28)) and canAct then
+    if mimgui.Button("Preview", mimgui.ImVec2(85, 28)) and canAct then
         local fi = fileList[selectedIdx]
         local pf = io.open(fi.path, "r")
         if pf then
@@ -418,9 +418,9 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
             local pts = d and d.points and #d.points or 0
             local wt  = d and d.waitTime and (d.waitTime/1000) or 0
             local sp  = d and d.isSprint and "Sprint" or "Jalan"
-            guiMsg = "📋 " .. fi.name .. " | " .. pts .. " titik | Wait: " .. wt .. "s | Mode: " .. sp
+            guiMsg = fi.name .. " | " .. pts .. " titik | Wait: " .. wt .. "s | Mode: " .. sp
         else
-            guiMsg = "❌ Gagal baca file untuk preview"
+            guiMsg = "Gagal baca file untuk preview"
         end
     end
     if not canAct then mimgui.PopStyleColor(2) end
@@ -435,10 +435,10 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
         mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.35, 0.20, 0.05, 0.9))
         mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.55, 0.32, 0.08, 0.9))
     end
-    if mimgui.Button("🧹 Kosongkan", mimgui.ImVec2(105, 28)) and selectedFile then
+    if mimgui.Button("Kosongkan", mimgui.ImVec2(105, 28)) and selectedFile then
         coordinates = {}
         saveCurrentFile()
-        guiMsg = "✅ Semua titik dihapus dari " .. basename(selectedFile)
+        guiMsg = "Semua titik dihapus dari " .. basename(selectedFile)
         sampAddChatMessage("{FFAA00}[AUTOWALK] Semua koordinat dihapus dari file aktif.", -1)
     end
     mimgui.PopStyleColor(2)
@@ -446,16 +446,16 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
     -- ── Koordinat aktif ─────────────────────────────────────
     mimgui.Spacing()
     mimgui.Separator()
-    mimgui.Text("📍 Koordinat aktif (" .. #coordinates .. " titik):")
+    mimgui.Text("Koordinat aktif (" .. #coordinates .. " titik):")
 
     mimgui.BeginChild("##coords", mimgui.ImVec2(-1, -40), true)
     if #coordinates == 0 then
         mimgui.PushStyleColor(mimgui.Col.Text, mimgui.ImVec4(0.5, 0.5, 0.5, 0.7))
-        mimgui.Text("  Belum ada titik. Gunakan /setcord atau tombol 📍 Simpan Posisi.")
+        mimgui.Text("  Belum ada titik. Gunakan /setcord atau tombol Simpan Posisi.")
         mimgui.PopStyleColor()
     else
         for i, pt in ipairs(coordinates) do
-            local spMode = pt[6] and "🏃" or "🚶"
+            local spMode = pt[6] and "[SPRINT]" or "[JALAN]"
             local label = string.format(
                 "[%02d] %s  X:%.1f  Y:%.1f  Z:%.1f",
                 i, spMode, pt[1], pt[2], pt[3]
@@ -466,10 +466,10 @@ mimgui.OnFrame(function() return showMenu[0] end, function()
             mimgui.SameLine()
             mimgui.PushStyleColor(mimgui.Col.Button,        mimgui.ImVec4(0.50, 0.06, 0.06, 0.8))
             mimgui.PushStyleColor(mimgui.Col.ButtonHovered, mimgui.ImVec4(0.72, 0.10, 0.10, 0.9))
-            if mimgui.SmallButton("✕##rm" .. i) then
+            if mimgui.SmallButton("X##rm" .. i) then
                 table.remove(coordinates, i)
                 saveCurrentFile()
-                guiMsg = "🗑 Titik #" .. i .. " dihapus."
+                guiMsg = "Titik #" .. i .. " dihapus."
             end
             mimgui.PopStyleColor(2)
         end
@@ -577,8 +577,8 @@ function main()
         enabled = not enabled
         sampAddChatMessage(
             enabled
-                and ("{00FF00}[AUTOWALK] ▶ AKTIF | File: " .. basename(selectedFile) .. " | Mode: " .. (isSprint and "Sprint" or "Jalan"))
-                or  "{FF4444}[AUTOWALK] ⏹ NONAKTIF",
+                and ("{00FF00}[AUTOWALK] AKTIF | File: " .. basename(selectedFile) .. " | Mode: " .. (isSprint and "Sprint" or "Jalan"))
+                or  "{FF4444}[AUTOWALK] NONAKTIF",
             -1
         )
     end)
@@ -589,11 +589,11 @@ function main()
         if arg == "true" or arg == "1" or arg == "on" then
             isSprint = true
             saveCurrentFile()
-            sampAddChatMessage("{FFFF00}[AUTOWALK] 🏃 Mode Sprint AKTIF - karakter akan berlari!", -1)
+            sampAddChatMessage("{FFFF00}[AUTOWALK] Mode Sprint AKTIF - karakter akan berlari!", -1)
         elseif arg == "false" or arg == "0" or arg == "off" then
             isSprint = false
             saveCurrentFile()
-            sampAddChatMessage("{00FFFF}[AUTOWALK] 🚶 Mode Jalan AKTIF - karakter akan berjalan.", -1)
+            sampAddChatMessage("{00FFFF}[AUTOWALK] Mode Jalan AKTIF - karakter akan berjalan.", -1)
         else
             local cur = isSprint and "{FFFF00}Sprint (Lari)" or "{00FFFF}Jalan (Walk)"
             sampAddChatMessage("{00FFFF}[AUTOWALK] Mode sekarang: " .. cur, -1)
@@ -744,7 +744,7 @@ function main()
 
     -- /helpcommand
     sampRegisterChatCommand("helpcommand", function()
-        sampAddChatMessage("{00FFFF}══ AUTOWALK COMMANDS ══", -1)
+        sampAddChatMessage("{00FFFF}=== AUTOWALK COMMANDS ===", -1)
         sampAddChatMessage("{00FF00}/awmenu{FFFFFF} - Buka GUI Manager file route (file list, hapus, gunakan, dll)", -1)
         sampAddChatMessage("{00FF00}/autowalk{FFFFFF} - Toggle autowalk ON/OFF", -1)
         sampAddChatMessage("{00FF00}/sprint true/false{FFFFFF} - Mode sprint (lari) atau jalan", -1)

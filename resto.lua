@@ -60,13 +60,10 @@ local function stopRestockHabis(alasan)
     restock_active = false
     lua_thread.create(function()
         wait(100)
-        sampAddChatMessage('{FF4444}╔══════════════════════════════╗', -1)
-        sampAddChatMessage('{FF4444}║  {FFAA00}⚠  AUTO RESTOCK DIHENTIKAN  {FF4444}⚠  ║', -1)
-        sampAddChatMessage('{FF4444}║  {FFFFFF}Bahan-bahan telah habis!        {FF4444}║', -1)
-        sampAddChatMessage('{FF4444}║  {FFFF00}» ' .. (alasan or 'Stok tidak mencukupi') .. '{FF4444}', -1)
-        sampAddChatMessage('{FF4444}║  {AAAAAA}Silakan isi ulang bahan terlebih  {FF4444}║', -1)
-        sampAddChatMessage('{FF4444}║  {AAAAAA}dahulu lalu ketik {00FF00}/restock {FF4444}║', -1)
-        sampAddChatMessage('{FF4444}╚══════════════════════════════╝', -1)
+        sampAddChatMessage('{FF4444}[AutoRP Resto] AUTO RESTOCK DIHENTIKAN!', -1)
+        sampAddChatMessage('{FF4444}[AutoRP Resto] Bahan-bahan telah habis!', -1)
+        sampAddChatMessage('{FF4444}[AutoRP Resto] Alasan: {FFFF00}' .. (alasan or 'Stok tidak mencukupi'), -1)
+        sampAddChatMessage('{FF4444}[AutoRP Resto] Silakan isi ulang bahan terlebih dahulu, lalu ketik {00FF00}/restock', -1)
     end)
 end
 
@@ -121,11 +118,9 @@ function main()
     sampRegisterChatCommand('restock', function()
         restock_active = not restock_active
         if restock_active then
-            sampAddChatMessage('{00FF00}╔══════════════════════════════╗', -1)
-            sampAddChatMessage('{00FF00}║   {FFFFFF}🍳  AUTO RESTOCK DIMULAI  🍳   {00FF00}║', -1)
-            sampAddChatMessage('{00FF00}║  {AAAAAA}Loop: /cook → Enter → 7 detik   {00FF00}║', -1)
-            sampAddChatMessage('{00FF00}║  {FFFFFF}Ketik {FF4444}/restock {FFFFFF}untuk berhenti   {00FF00}║', -1)
-            sampAddChatMessage('{00FF00}╚══════════════════════════════╝', -1)
+            sampAddChatMessage('{00FF00}[AutoRP Resto] AUTO RESTOCK DIMULAI!', -1)
+            sampAddChatMessage('{00FF00}[AutoRP Resto] Loop: /cook -> Enter -> 7 detik jeda', -1)
+            sampAddChatMessage('{00FF00}[AutoRP Resto] Ketik {FF4444}/restock {00FF00}untuk berhenti.', -1)
             startRestockLoop()
         else
             sampAddChatMessage('{FF4444}[RESTO] {FFFFFF}Restock otomatis dihentikan oleh pengguna.', -1)
@@ -185,7 +180,7 @@ function main()
         wait(0)
         if sampGetGamestate() == 3 and sampIsLocalPlayerSpawned() then
             sampAddChatMessage('{00FF00}[AutoRP Resto] {FFFFFF}Script berhasil dimuat!', -1)
-            sampAddChatMessage('{FFFFFF}» {00FF00}/rmenu {FFFFFF}buka menu  |  {00FF00}/restock {FFFFFF}mulai/stop restock', -1)
+            sampAddChatMessage('{FFFFFF}[AutoRP Resto] {00FF00}/rmenu {FFFFFF}buka menu  |  {00FF00}/restock {FFFFFF}mulai/stop restock', -1)
             break
         end
     end

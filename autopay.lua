@@ -16,6 +16,22 @@ function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
     end
 end
 
+-- Mendeteksi pesan dari server untuk menghentikan autopay jika ada kendala
+function sampev.onServerMessage(color, text)
+    if running then
+        -- Hilangkan kode warna hex {FFFFFF} dll agar pencarian teks akurat
+        local cleanText = text:gsub("{%x%x%x%x%x%x}", "")
+        
+        if cleanText:find("Pemain tersebut tidak terkoneksi ke server") or
+           cleanText:find("Uang anda tidak cukup") or
+           cleanText:find("Uang Anda tidak cukup") then
+            
+            running = false
+            sampAddChatMessage("{FF0000}[AutoPay] Sistem dihentikan! Alasan: " .. cleanText, -1)
+        end
+    end
+end
+
 function main()
     repeat wait(0) until isSampAvailable()
 
@@ -44,7 +60,7 @@ function main()
             local sisa = total
             sampAddChatMessage(string.format("{FFFF00}[AutoPay] Mengirim $%d ke ID %d...", total, id), -1)
 
-            while sisa > 0 do
+            while sisa > 0 and running do
                 local bayar = math.min(50000, sisa)
                 sampSendChat(string.format("/pay %d %d", id, bayar))
                 
@@ -60,8 +76,10 @@ function main()
                 wait(1000) -- Jeda aman antar loop /pay (bisa disesuaikan jika terkena spam limit)
             end
 
-            sampAddChatMessage(string.format("{00FF00}[AutoPay] Selesai! $%d berhasil dikirim ke ID %d.", total, id), -1)
-            running = false
+            if running then
+                sampAddChatMessage(string.format("{00FF00}[AutoPay] Selesai! $%d berhasil dikirim ke ID %d.", total, id), -1)
+                running = false
+            end
         end)
     end)
 
