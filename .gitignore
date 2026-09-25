@@ -3,8 +3,10 @@ logs.txt
 moonloader.log
 *.log
 
-# Ignore all contents in config/ except mimgui
-config/*
-!config/.gitignore
+# Ignore .json and .txt inside config/
+config/**/*.json
+config/**/*.txt
+
+# Keep mimgui and all its contents
 !config/mimgui/
 !config/mimgui/**

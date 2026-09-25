@@ -1,9 +1,12 @@
-# Ignore everything in the config directory
-*
+# Log files
+logs.txt
+moonloader.log
+*.log
 
-# Do not ignore this .gitignore file
-!.gitignore
+# Ignore .json and .txt inside config/
+config/**/*.json
+config/**/*.txt
 
-# Allow mimgui directory and its contents
-!mimgui/
-!mimgui/**
+# Keep mimgui and all its contents
+!config/mimgui/
+!config/mimgui/**
